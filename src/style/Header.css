@@ -1,0 +1,17 @@
+#Header {
+    background-color: black;
+    background-image: url('../assets/series.jpg');
+    background-size: cover;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#Header h1 {
+    background-color: rgba(146, 143, 143, 0.282);
+    color: white;
+    font-size: 5em;
+    padding: 40px;
+    border-radius: 10px;
+}
