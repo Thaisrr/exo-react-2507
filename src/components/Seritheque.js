@@ -1,16 +1,17 @@
 import "../style/Seritheque.css";
+import {useState} from "react";
+import Card from "./Card";
 
 const Seritheque = function() {
 
-    const s1 = {
-        title: 'Lost', 
-        description: 'Il y a une île qui fait grrr',
-        image: './images/lost.png',
-        finished: true
-    }
 
-    const series = [
-        s1,
+    const [series, setSeries] = useState([
+        {
+            title: 'Lost',
+            description: 'Il y a une île qui fait grrr',
+            image: './images/lost.png',
+            finished: true
+        },
         {
             title: 'Russian Doll', 
             description: '.....', 
@@ -29,8 +30,31 @@ const Seritheque = function() {
             image: './images/stranger-things-3.jpg',
             finished : true
         }
-    ]
+    ]);
 
+
+    function setStatutIndex(index) {
+
+      /*  if(serie_copy[index].finished === true) {
+            serie_copy[index].finished = false;
+        } else {
+            serie_copy[index].finished = true;
+        }
+       */
+       //  serie_copy[index].finished = (serie_copy[index].finished )? false : true;
+        const series_copy = [...series];
+        //const index = series_copy.indexOf(serie)
+        series_copy[index].finished = !series_copy[index].finished;
+        setSeries(series_copy);
+    }
+
+    function setStatut(serie) {
+        serie.finished = !serie.finished;
+        const series_copy = [...series];
+        const index = series_copy.findIndex((el) => el.title === serie.title);
+        series_copy[index] = serie;
+        setSeries(series_copy);
+    }
 
 
 
@@ -40,21 +64,11 @@ const Seritheque = function() {
             <h2>Mes Séries</h2>
 
             <section className="grid">
-
                 {series.map(function(serie) {
                     return (
-                        <div className={(serie.finished)? 'card finished' : 'card'}>
-                            <div className="card-header">
-                                <img src={serie.image} alt=""/>
-                            </div>
-                            <div className="card-body">
-                                <h3>{serie.title}</h3>
-                                <p>{serie.description}</p>
-                            </div>
-                        </div>
+                        <Card serie={serie} setStatut={setStatut} key={serie.title}/>
                     )
                 })}
-
             </section>
 
         </main>
