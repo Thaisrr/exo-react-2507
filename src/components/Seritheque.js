@@ -1,6 +1,7 @@
 import "../style/Seritheque.css";
 import {useState} from "react";
 import Card from "./Card";
+import Formulaire from "./Formulaire";
 
 const Seritheque = function() {
 
@@ -56,11 +57,19 @@ const Seritheque = function() {
         setSeries(series_copy);
     }
 
+    function addSerie(serie) {
+        setSeries([...series, serie]);
+    }
+
 
 
 
     return (
         <main id="Seritheque">
+
+            <Formulaire action={addSerie}/>
+
+
             <h2>Mes Séries</h2>
 
             <section className="grid">
@@ -70,7 +79,6 @@ const Seritheque = function() {
                     )
                 })}
             </section>
-
         </main>
     )
 }
